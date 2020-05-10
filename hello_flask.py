@@ -58,6 +58,27 @@ def post_json():
     json = request.get_json()  # POSTされたJSONを取得
     return jsonify(json)  # JSONをレスポンス
 
+@app.route('/test')
+def test_get_foobar():
+    return 'you got\n'
+
+@app.route('/test/<int:baz>', methods=['POST'])
+def test_post_foobar(baz):
+    return 'you posted {}\n'.format(baz)
+
+@app.route('/hoge', methods=['GET'])
+def test_get_json_from_dictionary():
+    dic = {
+        'foo': 'bar',
+        'ほげ': 'ふが'
+    }
+    return jsonify(dic)  # JSONをレスポンス
+
+@app.route('/hoge', methods=['POST'])
+def test_post_json():
+    json = request.get_json()  # POSTされたJSONを取得
+    return jsonify(json)  # JSONをレスポンス
+
 if __name__ == '__main__':
     # webサーバー立ち上げ
     app.run(host='0.0.0.0', port=port)
